@@ -5,18 +5,32 @@
 
 using namespace std;
 
+void print(int x)
+{
+	cout << x << endl;
+}
 
-int main() {
-	vector<string> vec {"abc", "def", "ghi"};
-
-	if (const auto it = find(begin(vec), end(vec), "abc");
-		it != end(vec)) {
-		*it = "$$$";
+void printLocalVariables(int x)
+{
+	print(x); // 100
+	{
+		int x(200);
+		print(x); // 200
 	}
-
-	for (const auto& s: vec) {
-		cout << s << "\n";
+	print(x); // 100
+	{
+		x = 300;
+		print(x); // 300
 	}
+	{
+		print(x); // 300
+	}
+}
 
+int main()
+{
+	int x(100);
+
+	printLocalVariables(x);
 	return 0;
 }
