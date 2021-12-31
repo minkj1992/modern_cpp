@@ -37,5 +37,7 @@
   - 최적화를 위해서 member들의 순서를 고려해야 한다. (e.g short type 2byte는 2바이트가 뒤에 padding된다.)
 
 ## 6. 행렬, 문자열, 포인터, 참조
+- nullptr(null pointer)
+- `void pointer` == `generic pointer`
 - reference variable
 

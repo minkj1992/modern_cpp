@@ -70,7 +70,7 @@ value 자체는 const가 아니기 때문에 assign 가능하다.
 value가 const가 아니지만, 포인터는 값을 const하게 처리하기 때문에 dereference가 불가능하다.
 포인터 자체는 const하지 않기 때문에 주소 할당이 가능하다.
 
-```cpp
+```c++
 {
 	using namespace std;
 
