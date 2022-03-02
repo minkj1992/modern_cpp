@@ -1,39 +1,32 @@
 #include <iostream>
-using namespace std;
+#include <array>
+#include <functional>
 
-void printMatrix(int *matrix, const int row, const int col)
+using namespace std;
+using validator_fnc = function<bool(const int &)>;
+
+bool isEven(const int &number)
 {
-	for (int r = 0; r < row; ++r)
-	{
-		for (int c = 0; c < col; ++c)
-			cout << matrix[(col * r) + c] << " ";
-		cout << endl;
-	}
+	return (number % 2 == 0) ? true : false;
+}
+
+bool isOdd(const int &number)
+{
+	return !isEven(number);
+}
+
+void printNumbers(array<int, 10> &arr, validator_fnc validator = isEven)
+{
+	for (int v : arr)
+		if (validator(v))
+			cout << v << ' ';
+	cout << endl;
 }
 
 int main()
 {
-	const int row = 3;
-	const int col = 5;
-	const int values[row][col] =
-		{
-			{1, 2, 3, 4, 5},
-			{6, 7, 8, 9, 10},
-			{11, 12, 13, 14, 15},
-		};
-
-	// init
-	int *matrix = new int[row * col];
-
-	// assign
-	for (int r = 0; r < row; ++r)
-		for (int c = 0; c < col; ++c)
-			matrix[(col * r) + c] = values[r][c];
-
-	printMatrix(matrix, row, col);
-
-	// delete
-	delete[] matrix;
-
+	array<int, 10> my_arr{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	printNumbers(my_arr);		 // 0 2 4 6 8
+	printNumbers(my_arr, isOdd); // 1 3 5 7 9
 	return 0;
 }
